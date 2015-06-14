@@ -10,7 +10,7 @@ require (['../../js/jquery-1.6.2.min'], function ($) {
 		add,
 		edit
 	) {
-		jQuery(".x10 a").click (function (event) {
+		jQuery(".on a, .off a").click (function (event) {
 			event.preventDefault();
 
 			jQuery.ajax({
