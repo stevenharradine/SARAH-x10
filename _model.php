@@ -1,6 +1,6 @@
 <?php
 	class X10Manager {
-		$table = `sarah`.`x10`;
+		private $table = "`sarah`.`x10`";
 
 		public function getRecord ($id) {
 			$sql = <<<EOD
