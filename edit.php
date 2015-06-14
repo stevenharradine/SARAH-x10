@@ -1,6 +1,6 @@
 <?php
 	require_once '../../views/_secureHead.php';
-	require_once '../../models/_edit.php';
+	require_once $relative_base_path . 'models/edit.php';
 
 	if( isset ($sessionManager) && $sessionManager->isAuthorized () ) {
 		$id = request_isset ('id');
@@ -12,14 +12,13 @@
 		$page_title = 'Edit | X10';
 
 		// build edit view
-		$editView = new EditView ('Edit', 'update_by_id', $id);
-		$editView->addRow ('name', 'Name', $record['name']);
-		$editView->addRow ('house', 'House', $record['house']);
-		$editView->addRow ('unit', 'Unit', $record['unit']);
-
+		$editModel = new EditModel ('Edit', 'update_by_id', $id);
+		$editModel->addRow ('name', 'Name', $record['name']);
+		$editModel->addRow ('house', 'House', $record['house']);
+		$editModel->addRow ('unit', 'Unit', $record['unit']);
 
 		$views_to_load = array();
-		$views_to_load[] = '../../views/_edit.php';
+		$views_to_load[] = ' ' . EditView2::render($editModel);
 
 		include '../../views/_generic.php';
 	}
