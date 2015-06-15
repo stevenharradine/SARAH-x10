@@ -12,14 +12,16 @@ EOD;
 			return mysql_fetch_array( $data );
 		}
 
-		public function addRecord ($key, $value) {
+		public function addRecord ($name, $house, $unit) {
 			$sql = <<<EOD
 	INSERT INTO  ( $table
-		`key`,
-		`value`
+		`name`,
+		`house`,
+		`unit`
 	) VALUES (
-		'$key',
-		'$value'
+		'$name',
+		'$house',
+		'$unit'
 	);
 EOD;
 
@@ -45,7 +47,7 @@ EOD;
 			return $data;
 		}
 
-		public function updateRecord ($id, $key, $value) {
+		public function updateRecord ($id, $key, $value, $value) {
 			$sql = <<<EOD
 	UPDATE $table
 	SET `key` = '$key',
