@@ -9,7 +9,7 @@
 		
 		$record = $x10Manager->getRecord ($id);
 
-		$page_title = 'Edit | X10';
+		$page_title = 'Edit | ' . $app_title;
 
 		// build edit view
 		$editModel = new EditModel ('Edit', 'update_by_id', $id);

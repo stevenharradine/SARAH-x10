@@ -26,7 +26,7 @@
 		
 		$x10_data = $x10Manager->getAllRecords();
 		
-		$page_title = 'X10';
+		$page_title = $app_title;
 		$alt_menu = '<a href="#" class="add">Add</a>';
 
 		$addView = new AddView ('Add', 'add');
