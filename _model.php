@@ -1,12 +1,13 @@
 <?php
 	class X10Manager {
-		$table = `sarah`.`x10`;
+		private $table = "`sarah`.`x10`";
+		private $table_key = "X10_ID";
 
 		public function getRecord ($id) {
 			$sql = <<<EOD
 	SELECT *
-	FROM $table
-	WHERE `SETTING_ID`='$id'
+	FROM $this->table
+	WHERE `$this->table_key`='$id'
 EOD;
 			$data = mysql_query($sql) or die(mysql_error());
 			return mysql_fetch_array( $data );
@@ -14,7 +15,7 @@ EOD;
 
 		public function addRecord ($name, $house, $unit) {
 			$sql = <<<EOD
-	INSERT INTO  ( $table
+	INSERT INTO $this->table (
 		`name`,
 		`house`,
 		`unit`
@@ -24,14 +25,14 @@ EOD;
 		'$unit'
 	);
 EOD;
-
+echo $sql;
 			return mysql_query($sql) or die(mysql_error());
 		}
 
 		public function deleteRecord ($id) {
 			$sql = <<<EOD
-	DELETE FROM $table
-	WHERE `SETTING_ID`='$id'
+	DELETE FROM $this->table
+	WHERE `$this->table_key`='$id'
 EOD;
 
 			return mysql_query($sql) or die(mysql_error());
@@ -40,19 +41,20 @@ EOD;
 		public function getAllRecords () {
 			$sql = <<<EOD
 	SELECT *
-	FROM $table
+	FROM $this->table
 EOD;
 			$data = mysql_query($sql) or die(mysql_error());
 
 			return $data;
 		}
 
-		public function updateRecord ($id, $key, $value, $value) {
+		public function updateRecord ($id, $name, $house, $unit) {
 			$sql = <<<EOD
-	UPDATE $table
-	SET `key` = '$key',
-		`value` = '$value'
-	WHERE `SETTING_ID`='$id'
+	UPDATE $this->table
+	SET `name` = '$name',
+		`house` = '$house',
+		`unit` = '$unit'
+	WHERE `$this->table_key`='$id'
 EOD;
 			
 			return mysql_query($sql) or die(mysql_error());

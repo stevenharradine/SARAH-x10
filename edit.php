@@ -1,24 +1,24 @@
 <?php
 	require_once '../../views/_secureHead.php';
-	require_once '../../models/_edit.php';
+	require_once $relative_base_path . 'models/edit.php';
 
-	if( isset ($sessionManager) && $sessionManager->getUserType() == 'ADMIN' ) {
+	if( isset ($sessionManager) && $sessionManager->isAuthorized () ) {
 		$id = request_isset ('id');
 
-		$settingsManager = new SettingsManager ();
+		$x10Manager = new X10Manager ();
 		
-		$record = $settingsManager->getRecord ($id);
+		$record = $x10Manager->getRecord ($id);
 
 		$page_title = 'Edit | X10';
 
 		// build edit view
-		$editView = new EditView ('Edit', 'update_by_id', $id);
-		$editView->addRow ('key', 'Key', $record['key']);
-		$editView->addRow ('value', 'Value', $record['value']);
-
+		$editModel = new EditModel ('Edit', 'update_by_id', $id);
+		$editModel->addRow ('name', 'Name', $record['name']);
+		$editModel->addRow ('house', 'House', $record['house']);
+		$editModel->addRow ('unit', 'Unit', $record['unit']);
 
 		$views_to_load = array();
-		$views_to_load[] = '../../views/_edit.php';
+		$views_to_load[] = ' ' . EditView2::render($editModel);
 
 		include '../../views/_generic.php';
 	}
