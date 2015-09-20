@@ -42,8 +42,8 @@
 
 			$tableView->addRow ( array (
 				TableView::createCell ('name', $x10_row['name'] ),
-				TableView::createCell ('on', "<a href='../Proxy/index.php?url=http://192.168.1.138:1771/?houseCode=$this_house&unitCode=$this_unit&statusCode=+'>ON</a>" ),
-				TableView::createCell ('off', "<a href='../Proxy/index.php?url=http://192.168.1.138:1771/?houseCode=$this_house&unitCode=$this_unit&statusCode=-'>OFF</a>" ),
+				TableView::createCell ('on', "<a href='http://192.168.1.138:1771/?houseCode=$this_house&unitCode=$this_unit&statusCode=+'>ON</a>" ),
+				TableView::createCell ('off', "<a href='http://192.168.1.138:1771/?houseCode=$this_house&unitCode=$this_unit&statusCode=-'>OFF</a>" ),
 				TableView::createEdit ($x10_row['X10_ID'])
 			));
 		}
