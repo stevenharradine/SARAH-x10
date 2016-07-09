@@ -36,15 +36,17 @@
 
 		$tableView = new TableView ( array ('Name', 'ON', 'OFF', '') );
 
-		while (($x10_row = mysql_fetch_array( $x10_data ) ) != null) {
-			$this_house = $x10_row['house'];
-			$this_unit  = $x10_row['unit'];
+		for ($i = 0; $i < count ($x10_data); $i++) {
+			$this_id    = $x10_data[$i]['id'];
+			$this_name  = $x10_data[$i]['name'];
+			$this_house = $x10_data[$i]['house'];
+			$this_unit  = $x10_data[$i]['unit'];
 
 			$tableView->addRow ( array (
-				TableView::createCell ('name', $x10_row['name'] ),
+				TableView::createCell ('name', $this_name ),
 				TableView::createCell ('on', "<a href='../Proxy/index.php?url=http://192.168.1.138:1771/?houseCode=$this_house&unitCode=$this_unit&statusCode=+'>ON</a>" ),
 				TableView::createCell ('off', "<a href='../Proxy/index.php?url=http://192.168.1.138:1771/?houseCode=$this_house&unitCode=$this_unit&statusCode=-'>OFF</a>" ),
-				TableView::createEdit ($x10_row['X10_ID'])
+				TableView::createEdit ($this_id)
 			));
 		}
 
