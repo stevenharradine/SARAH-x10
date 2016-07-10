@@ -22,7 +22,7 @@
 	WHERE `$this->table_key`='$id'
 EOD;
 			$data = $link->query($sql);
-			return mysql_fetch_array( $data );
+			return mysqli_fetch_array( $data );
 		}
 
 		public function addRecord ($name, $house, $unit) {
@@ -45,12 +45,15 @@ echo $sql;
 		}
 
 		public function deleteRecord ($id) {
+			$link = X10Manager::get_link();
+			$USER_ID = $_SESSION['USER_ID'];
+
 			$sql = <<<EOD
 	DELETE FROM $this->table
 	WHERE `$this->table_key`='$id'
 EOD;
 
-			return mysql_query($sql) or die(mysql_error());
+			return $link->query($sql);
 		}
 
 		public function getAllRecords () {
@@ -79,6 +82,9 @@ EOD;
 		}
 
 		public function updateRecord ($id, $name, $house, $unit) {
+			$link = X10Manager::get_link();
+			$USER_ID = $_SESSION['USER_ID'];
+
 			$sql = <<<EOD
 	UPDATE $this->table
 	SET `name` = '$name',
@@ -87,6 +93,6 @@ EOD;
 	WHERE `$this->table_key`='$id'
 EOD;
 			
-			return mysql_query($sql) or die(mysql_error());
+			return $link->query($sql);
 		}
 	}
